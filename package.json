@@ -1,0 +1,16 @@
+{
+  "name": "morpion",
+  "version": "1.0.0",
+  "description": "morpion game",
+  "main": "server/index.js",
+  "author": "Gonthier Antoine",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "http": "^0.0.1-security",
+    "path": "^0.12.7",
+    "socket.io": "^4.6.1",
+    "ws": "^8.13.0"
+  }
+}
