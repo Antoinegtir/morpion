@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morpion</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1f1f1f;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #grid {
+      margin: 0 auto;
+      border-collapse: collapse;
+      background-color: #333;
+    }
+
+    #grid td {
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      font-size: 48px;
+      font-weight: bold;
+      border: 1px solid #000;
+      cursor: pointer;
+      background-color: #555;
+    }
+
+    #grid td:hover {
+      background-color: #777;
+    }
+  </style>
+</head>
+<body>
+  <h1>Morpion</h1>
+  <table id="grid">
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script>
+    const grid = document.getElementById('grid');
+    const cells = grid.getElementsByTagName('td');
+    const socket = io();
+
+    socket.on('grid', newGrid => {
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          cells[i * 3 + j].textContent = newGrid[i][j];
+        }
+      }
+    });
+    grid.addEventListener('click', event => {
+      const cell = event.target;
+      const row = cell.parentElement.rowIndex;
+      const col = cell.cellIndex;
+
+      socket.emit('placeSymbol', { row, col });
+    });
+    socket.on('gameEnd', winner => {
+      setTimeout(() => {
+        alert(`Le joueur ${winner} a gagné !`);
+      }, 200);
+    });
+    
+  </script>
+</body>
+</html>
