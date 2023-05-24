@@ -9,7 +9,7 @@ A simple express js server that allow player to play morpion game with graphical
 
 #
 
-<img src="https://raw.githubusercontent.com/Antoinegtir/morpion/main/screenshot/morpion.png?token=GHSAT0AAAAAACCKSIG5MVZL7YDUBFUMZEFGZDNCHAQ"></img>
+<img src="https://github.com/Antoinegtir/morpion/blob/main/screenshot/morpion.png?raw=true"></img>
 
 ## Usage
 
